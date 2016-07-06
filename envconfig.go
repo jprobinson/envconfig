@@ -7,7 +7,6 @@ package envconfig
 import (
 	"errors"
 	"fmt"
-	"log"
 	"os"
 	"reflect"
 	"strconv"
@@ -71,9 +70,7 @@ func Process(prefix string, spec interface{}) error {
 		key := strings.ToUpper(fmt.Sprintf("%s_%s", prefix, fieldName))
 
 		// ONLY WORKS WITH >=go1.5. UPGRADE IT!
-		log.Print(key)
 		value, ok := os.LookupEnv(key)
-		log.Print(value)
 		if !ok && alt != "" {
 			key := strings.ToUpper(fieldName)
 			value, ok = os.LookupEnv(key)
